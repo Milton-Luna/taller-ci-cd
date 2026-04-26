@@ -1,0 +1,31 @@
+name: Flujo CI/CD Taller
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ci-testing:
+    name: Pruebas de Integración (CI)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtener el código
+        uses: actions/checkout@v4
+
+      - name: Verificar existencia de archivos
+        run: |
+          if [ -f "home.html" ] && [ -f "styles.css" ]; then
+            echo "Éxito: Los archivos home.html y styles.css existen."
+          else
+            echo "Error: Faltan archivos requeridos."
+            exit 1 # Esto hace que el pipeline falle si no están
+          fi
+
+  cd-deployment:
+    name: Preparación para el Despliegue (CD)
+    needs: ci-testing
+    runs-on: ubuntu-latest
+    steps:
+      - name: test despliegue
+        run: echo "Artefactos listos para el despliegue en el entorno de Staging"
