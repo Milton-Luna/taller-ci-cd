@@ -16,7 +16,7 @@ jobs:
 
       - name: Verificar existencia de archivos
         run: |
-          if [ -f "home.html" ] && [ -f "styles.css" ]; then
+          if [ -f "pages/home.html" ] && [ -f "styles/styles.css" ]; then
             echo "Éxito: Los archivos home.html y styles.css existen."
           else
             echo "Error: Faltan archivos requeridos."
