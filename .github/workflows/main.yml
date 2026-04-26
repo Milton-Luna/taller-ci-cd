@@ -4,10 +4,11 @@ on:
   push:
     branches:
       - main
-
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 jobs:
   ci-testing:
-    name: Pruebas de Integración (CI)
+    name: Pruebas (CI)
     runs-on: ubuntu-latest
     steps:
       - name: Obtener el código
@@ -19,7 +20,7 @@ jobs:
             echo "Éxito: Los archivos home.html y styles.css existen."
           else
             echo "Error: Faltan archivos requeridos."
-            exit 1 # Esto hace que el pipeline falle si no están
+            exit 1
           fi
 
   cd-deployment:
